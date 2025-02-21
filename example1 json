@@ -1,0 +1,9 @@
+{
+    "is_success": true,
+    "user_id": "john_doe_17091999",
+    "email": "john@xyz.com",
+    "roll_number": "ABCD123",
+    "numbers": ["1", "334", "4"],
+    "alphabets": ["M", "B"],
+    "highest_alphabet": ["M"]
+}
