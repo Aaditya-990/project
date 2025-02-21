@@ -1,0 +1,9 @@
+{
+    "user_id": "john_doe_17092023",
+    "is_success": true,
+    "status": "active",
+    "college_email": "student@example.com",
+    "college_roll_number": "CSE2023001",
+    "numbers": [1, 2, 3, 4, 5],
+    "alphabets": ["a", "b", "c", "d", "e"]
+}
