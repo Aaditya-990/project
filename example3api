@@ -1,0 +1,52 @@
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+# POST endpoint for /bfhl
+@app.route('/bfhl', methods=['POST'])
+def handle_bfhl_post():
+    # Get JSON data from the request
+    data = request.get_json()
+
+    # Validate the incoming data
+    if 'data' not in data:
+        return jsonify({"error": "Missing field: 'data' is required."}), 400
+
+    input_data = data['data']
+
+    # Separate numbers and alphabets
+    numbers = [item for item in input_data if item.isdigit()]
+    alphabets = [item for item in input_data if item.isalpha() and len(item) == 1]
+
+    # Determine the highest alphabet (case insensitive)
+    highest_alphabet = [max(alphabets, key=lambda x: x.lower())] if alphabets else []
+
+    # Create user_id in the format "fullname_ddmmyyyy"
+    full_name = "John Doe"  # Example full name
+    dob = "17091999"  # Example date of birth
+    user_id = f"{full_name.replace(' ', '_').lower()}_{dob}"
+
+    # Prepare the response
+    response = {
+        "is_success": True,
+        "user_id": user_id,
+        "email": "john@xyz.com",  # Example email
+        "roll_number": "ABCD123",  # Example roll number
+        "numbers": numbers,
+        "alphabets": alphabets,
+        "highest_alphabet": highest_alphabet
+    }
+
+    return jsonify(response), 201  # Return a 201 Created status
+
+# GET endpoint for /bfhl
+@app.route('/bfhl', methods=['GET'])
+def handle_bfhl_get():
+    # Hardcoded response
+    response = {
+        "operation_code": "BFHL-2023"
+    }
+    return jsonify(response), 200  # Return a 200 OK status
+
+if __name__ == '__main__':
+    app.run(debug=True)
